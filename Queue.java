@@ -1,21 +1,65 @@
-public class Queue<E>
-{
-	public Queue()
-	{}
+import java.util.NoSuchElementException;
 
-	public int size()
-	{return -1;}
+public class Queue<E> {
+    private Node head;
+    private Node tail;
+    private int size;
 
-	public boolean isEmpty()
-	{return false;}
+    private class Node {
+        private E data;
+        private Node next;
+        private Node previous;
 
-	public void enqueue(E item)
-	{}
+        public Node(E data) {
+            this.data = data;
+        }
+    }
 
-	public E dequeue()
-	{return null;}
+	public Queue() {
+        size = 0;
+	}
 
-	public E peek()
-	{return null;}
+	public int size() {
+        return size;
+	}
+
+	public boolean isEmpty() {
+    	return head == null;
+	}
+
+	public void enqueue(E item) {
+	    if (isEmpty()) {
+	        head = tail = new Node(item);
+        } else {
+	        Node tempNode = new Node(item);
+	        tempNode.next = head;
+	        head.previous = tempNode;
+	        head = tempNode;
+        }
+        size++;
+    }
+
+	public E dequeue() {
+        if (!isEmpty()) {
+            if (size() == 1) {
+                E toReturn = tail.data;
+                head = tail = null;
+                size--;
+                return toReturn;
+            }
+            E toReturn = tail.data;
+            tail = tail.previous;
+            tail.next = null;
+            size--;
+            return toReturn;
+        } else {
+            throw new NoSuchElementException();
+        }
+    }
+
+	public E peek() {
+        if (!isEmpty()) return tail.data;
+        else throw new NoSuchElementException();
+    }
 
 }
