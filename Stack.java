@@ -15,11 +15,10 @@ public class Stack<E> {
 			stack = new Object[stack.length * 2];
 			System.arraycopy(tempArray, 0, stack, 0, tempArray.length);
 		}
-		stack[size()] = item;
-		size++;
+		stack[size++] = item;
 	}
 
-	public E pop() {
+	public E pop() throws EmptyStackException {
 	    if (!isEmpty()) {
             E toReturn = (E) stack[size() - 1];
             stack[size() - 1] = null;
@@ -30,7 +29,7 @@ public class Stack<E> {
         }
 	}
 
-	public E peek() {
+	public E peek() throws EmptyStackException {
 	    if (!isEmpty()) return (E) stack[size() - 1];
 	    else throw new EmptyStackException();
     }
