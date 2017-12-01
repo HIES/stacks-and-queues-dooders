@@ -39,7 +39,7 @@ public class Queue<E> {
         size++;
     }
 
-	public E dequeue() {
+	public E dequeue() throws NoSuchElementException {
         if (!isEmpty()) {
             if (size() == 1) {
                 E toReturn = tail.data;
@@ -57,7 +57,7 @@ public class Queue<E> {
         }
     }
 
-	public E peek() {
+	public E peek() throws NoSuchElementException {
         if (!isEmpty()) return tail.data;
         else throw new NoSuchElementException();
     }
