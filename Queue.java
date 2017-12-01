@@ -1,8 +1,8 @@
 import java.util.NoSuchElementException;
 
 public class Queue<E> {
-    private Node head;
-    private Node tail;
+    private Node head; // Head is the back of the queue 
+    private Node tail; // Tail is the front of the queue
     private int size;
 
     private class Node {
